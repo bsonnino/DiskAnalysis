@@ -35,6 +35,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetProjects.DataVisualization.Toolkit, Version=5.0.31.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetProjects.Wpf.Toolkit.5.0.31\lib\net40\DotNetProjects.DataVisualization.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetProjects.Input.Toolkit, Version=5.0.31.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetProjects.Wpf.Toolkit.5.0.31\lib\net40\DotNetProjects.Input.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetProjects.Layout.Toolkit, Version=5.0.31.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetProjects.Wpf.Toolkit.5.0.31\lib\net40\DotNetProjects.Layout.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DotNetProjects.WPF.Themes, Version=5.0.31.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetProjects.Wpf.Toolkit.5.0.31\lib\net40\DotNetProjects.WPF.Themes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -49,6 +65,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFFolderBrowser, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFFolderBrowser.1.0.2\lib\WPFFolderBrowser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -86,6 +106,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

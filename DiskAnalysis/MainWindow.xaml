@@ -3,10 +3,103 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DiskAnalysis"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=DotNetProjects.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
+            <TextBlock Text="Minimum size:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+            <TextBox Width="150" x:Name="MinSizeBox" Text="1048576" VerticalContentAlignment="Center"/>
+        </StackPanel>
+        <Button Width="85" Height="30" Content="Start" Click="StartClick"/>
+        <TabControl Grid.Row="1">
+            <TabItem Header="File Data">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <ListBox x:Name="FilesList">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding FullName}"/>
+                                    <TextBlock Text="{Binding Length, StringFormat=N0}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <TextBlock x:Name="TotalFilesText" Margin="5,0" VerticalAlignment="Center"/>
+                        <TextBlock x:Name="LengthFilesText" Margin="5,0" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Extensions">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="ExtList">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Extension}" Width="100" Margin="5"/>
+                                    <TextBlock Text="{Binding Quantity, StringFormat=N0}" Width="100" Margin="5" TextAlignment="Right"/>
+                                    <TextBlock Text="{Binding Size,StringFormat=N0}" Width="150" Margin="5" TextAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <chartingToolkit:Chart Title="Extensions"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch">
+                        <chartingToolkit:PieSeries DependentValuePath="Size"
+                                           IndependentValuePath="Extension"
+                                           x:Name="ExtSeries" />
+                    </chartingToolkit:Chart>
+                </Grid>
+            </TabItem>
+            <TabItem Header="ABC Curve">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="AbcList">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" Width="250" Margin="5"/>
+                                    <TextBlock Text="{Binding Percent, StringFormat=N2}" Width="100" TextAlignment="Right"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <chartingToolkit:Chart Title="Abc Curve"
+                                   Grid.Row="0"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch">
+                        <chartingToolkit:Chart.Axes>
+                            <chartingToolkit:CategoryAxis Orientation="X" ShowGridLines="False"  />
+                            <chartingToolkit:LinearAxis Title="% Size"
+                                                     Orientation="Y"
+                                                     ShowGridLines="True" />
+                        </chartingToolkit:Chart.Axes>
+                        <chartingToolkit:LineSeries DependentValuePath="Percent"
+                                            IndependentValuePath="Item"
+                                            x:Name="AbcSeries" />
+                    </chartingToolkit:Chart>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
